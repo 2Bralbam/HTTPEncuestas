@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="HTTPEncuestas.Views.Controls.Config"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HTTPEncuestas.Views.Controls"
+             xmlns:vm="clr-namespace:HTTPEncuestas.Models.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ConfigViewModel></vm:ConfigViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <Label HorizontalAlignment="Center" FontSize="32">Encuestas Labsystec</Label>
+        <StackPanel VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center">Introduce el tema de la encuesta</Label>
+            <TextBox Width="220"></TextBox>
+            <Button Width="120" Margin="10" Command="{Binding IniciarEncuestaCommand}">Iniciar Encuesta</Button>
+        </StackPanel>        
+    </Grid>
+</UserControl>
