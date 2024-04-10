@@ -34,7 +34,6 @@
                                     </Border>
                                     <Label Content="{Binding Pregunta}"></Label>
                                 </StackPanel>
-
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
