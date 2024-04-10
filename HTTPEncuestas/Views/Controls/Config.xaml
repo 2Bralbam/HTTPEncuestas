@@ -11,10 +11,24 @@
         <vm:ConfigViewModel></vm:ConfigViewModel>
     </UserControl.DataContext>
     <Grid>
+        <Button Width="180" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Margin="20" Command="{Binding VerAnterioresEncuestasCommand}">Ver Encuestas Anteriores</Button>
         <Label HorizontalAlignment="Center" FontSize="32">Encuestas Labsystec</Label>
         <StackPanel VerticalAlignment="Center">
             <Label HorizontalAlignment="Center">Introduce el tema de la encuesta</Label>
-            <TextBox Width="220"></TextBox>
+            <TextBox Width="220" Text="{Binding TituloEncuesta}"></TextBox>
+            <Label HorizontalAlignment="Center">Agrega tus preguntas de la encuesta</Label>
+            <TextBox Width="220" x:Name="preg" Text="{Binding Pregunta}"></TextBox>
+            <Button Width="120" Margin="10" Command="{Binding AgregarPreguntaCommand}" Click="Button_Click">Agregar pregunta</Button>
+           
+            <ListBox HorizontalAlignment="Center" Width="400" Height="60" ItemsSource="{Binding Preguntas}" SelectedItem="{Binding SelectedPregunta}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}"></Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+            </ListBox>
+            <Button Width="120" Margin="10" Command="{Binding QuitarPreguntaCommand}">Quitar Pregunta</Button>
             <Button Width="120" Margin="10" Command="{Binding IniciarEncuestaCommand}">Iniciar Encuesta</Button>
         </StackPanel>        
     </Grid>

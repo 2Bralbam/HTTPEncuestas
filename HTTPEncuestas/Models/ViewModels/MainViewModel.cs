@@ -9,7 +9,8 @@ namespace HTTPEncuestas.Models.ViewModels
 {
     public class MainViewModel:INotifyPropertyChanged
     {
-        public event Action<string> CambioDeVista;
+        public event EventHandler<string> CambioDeVista;
+        
         private string? NVista { get; set; }
 
         public string? NombreVista
@@ -26,7 +27,17 @@ namespace HTTPEncuestas.Models.ViewModels
         public MainViewModel()
         {
             NombreVista = "ConfigView";
+            VMMsg.CambioDeVista += VMMsg_CambioDeVista;
         }
+
+        private void VMMsg_CambioDeVista(object? sender, string e)
+        {
+            if(!string.IsNullOrEmpty(e))
+            {
+                NombreVista = e;
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)

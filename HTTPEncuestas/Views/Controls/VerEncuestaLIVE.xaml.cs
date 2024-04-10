@@ -17,13 +17,14 @@ using System.Windows.Shapes;
 namespace HTTPEncuestas.Views.Controls
 {
     /// <summary>
-    /// Lógica de interacción para EncuestasAnteriores.xaml
+    /// Lógica de interacción para VerEncuestaLIVE.xaml
     /// </summary>
-    public partial class EncuestasAnteriores : UserControl
+    public partial class VerEncuestaLIVE : UserControl
     {
-        public EncuestasAnteriores()
+        public VerEncuestaLIVE()
         {
             InitializeComponent();
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTTPEncuestas.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,21 +15,33 @@ namespace HTTPEncuestas.Services
         public string TituloEncuesta { get; set; } = null!;
         public HTTPServer()
         {
-            Server.Prefixes.Add("http://*:1234/");   
+            Server.Prefixes.Add("http://*:80/");   
+            VMMsg.SetServerStatus += (s, e) =>
+            {
+                if (e)
+                {
+                    StartServer();
+                }
+                else
+                {
+                    StopServer();
+                }
+            };
         }
         public bool StartServer()
         {
-            if (!Server.IsListening)
-            {
-                Server.Start();
-                new Thread(Escuchar) 
-                { IsBackground = true }.Start();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //if (!Server.IsListening)
+            //{
+            //    Server.Start();
+            //    new Thread(Escuchar)
+            //    { IsBackground = true }.Start();
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+            return true;
         }
 
         void Escuchar()

@@ -24,18 +24,7 @@ namespace HTTPEncuestas.Views.Controls
         public VerEncuesta()
         {
             InitializeComponent();
-            this.Loaded += Appearing;
-        }
-        private void Appearing(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation fadeIn = new DoubleAnimation(0.0, 1.0, TimeSpan.FromSeconds(0.5));
-            this.BeginAnimation(UserControl.OpacityProperty, fadeIn);
         }
 
-        private void Disappearing(object sender, RoutedEventArgs e)
-        {
-            DoubleAnimation fadeOut = new DoubleAnimation(1.0, 0.0, TimeSpan.FromSeconds(0.5));
-            this.BeginAnimation(UserControl.OpacityProperty, fadeOut);
-        }
     }
 }

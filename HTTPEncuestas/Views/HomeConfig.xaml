@@ -11,7 +11,7 @@
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
-    <ContentControl>
+    <ContentControl x:Name="view">
         
         <ContentControl.Resources>
 
@@ -19,7 +19,7 @@
             <controls:VerEncuesta x:Key="VerEncuesta"></controls:VerEncuesta>
             <controls:EncuestasAnteriores x:Key="EncuestasAnteriores"></controls:EncuestasAnteriores>
             <controls:Stats x:Key="Stats"></controls:Stats>
-
+            <controls:VerEncuestaLIVE x:Key="VerEncuestaLive"></controls:VerEncuestaLIVE>
         </ContentControl.Resources>
         <ContentControl.Style>
                 <Style TargetType="ContentControl">
@@ -33,9 +33,12 @@
                         <DataTrigger Value="EncuestasView" Binding="{Binding NombreVista}">
                             <Setter Property="Content" Value="{StaticResource EncuestasAnteriores}"/>
                         </DataTrigger>
-                        <DataTrigger Value="EncuestaView" Binding="{Binding NombreVista}">
+                        <DataTrigger Value="VerEncuestaView" Binding="{Binding NombreVista}">
                             <Setter Property="Content" Value="{StaticResource VerEncuesta}"/>
                         </DataTrigger>
+                    <DataTrigger Value="VerEncuestaLiveView" Binding="{Binding NombreVista}">
+                        <Setter Property="Content" Value="{StaticResource VerEncuestaLive}"/>
+                    </DataTrigger>
                 </Style.Triggers>
                     
                 </Style>
