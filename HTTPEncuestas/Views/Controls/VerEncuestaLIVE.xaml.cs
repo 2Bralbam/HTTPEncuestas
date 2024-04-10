@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTTPEncuestas.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,7 @@ namespace HTTPEncuestas.Views.Controls
             InitializeComponent();
         }
 
+        
     }
+    
 }

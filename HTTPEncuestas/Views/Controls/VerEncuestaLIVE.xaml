@@ -16,23 +16,47 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="10">
-            <StackPanel>
+            <StackPanel Background="White">
                 <Label FontSize="24" HorizontalAlignment="Center">Resultados generales</Label>
-                <Border Height="300" Width="300" Background="red">
-                    
-                </Border>
+                <Grid Height="300" Width="Auto">
+                    <ListBox ItemsSource="{Binding ListaBarras}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel VerticalAlignment="Bottom">
+                                    <Label HorizontalAlignment="Center" Content="{Binding Promedio}"></Label>
+                                    <Border Height="{Binding Tamaño}" VerticalAlignment="Bottom" Margin="5 10" Width="40" Background="red">
+
+                                    </Border>
+                                    <Label Content="{Binding Pregunta}"></Label>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+                    <Border Height="1" Width="350" Background="black" VerticalAlignment="Bottom">
+
+                    </Border>
+
+                </Grid>
                 <Button Command="{Binding DetenerEncuestaCommand}" Margin="10" MaxWidth="120">Detener encuesta</Button>
             </StackPanel>
-            
-            
+
+
         </Grid>
         <Grid Grid.Column="1">
             <StackPanel>
                 <Label FontSize="24" HorizontalAlignment="Center">Ultimas Respuestas</Label>
                 <ListBox>
-                    
+
                 </ListBox>
-                
+
             </StackPanel>
         </Grid>
     </Grid>

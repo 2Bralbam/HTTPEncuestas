@@ -24,6 +24,7 @@ namespace HTTPEncuestas.Models.ViewModels
         public ICommand VerAnterioresEncuestasCommand { get; set; }
         public ICommand AgregarPreguntaCommand { get; set; }
         public ICommand QuitarPreguntaCommand { get; set; }
+        private bool FirstEncuesta = true;
         public string Pregunta { get; set; } = "";
         public ConfigViewModel()
         {
@@ -56,6 +57,23 @@ namespace HTTPEncuestas.Models.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         private void IniciarEncuesta()
         {
+            FirstEncuesta = false;
+            List<GraficaModel> PreguntasParaGrafica = new();
+            Parallel.ForEach(Preguntas,P => 
+            {
+                GraficaModel m = new() 
+                {
+                    Pregunta = P,
+                    Promedio = 50,
+                    Tamaño = 100
+                };
+                PreguntasParaGrafica.Add(m);
+            });
+            VMMsg.OnUpdateGraficasLive(PreguntasParaGrafica);
+            if (!FirstEncuesta)
+            {
+                VMMsg.UpdateGraficas();
+            }
             if(!string.IsNullOrEmpty(TituloEncuesta))
             {
                 if(Preguntas.Count == 0)

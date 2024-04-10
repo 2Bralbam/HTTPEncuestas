@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace HTTPEncuestas.Models.Entities
 {
-    public class ResultadosEncuesta
+    public class PreguntasDTO
     {
-        public string Nombre { get; set; } = string.Empty;
-
-        public decimal PromedioSatisfaccion { get; set; }
+        public string Nombre { get; set; } = null!;
+        public int[]? Respuestas { get; set; }
     }
 }

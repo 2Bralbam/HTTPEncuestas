@@ -55,12 +55,15 @@ namespace HTTPEncuestas.Services
                     var context = Server.GetContext();
                     if(context.Request.Url != null)
                     {
-                        if(context.Request.Url.LocalPath == "")
+                        if(context.Request.Url.LocalPath == "/")
                         {
-                            string Pagina = File.ReadAllText("Assets/Index.html");
-                            var bufferPagina = Encoding.UTF8.GetBytes(Pagina);
-                            context.Response.ContentLength64 = bufferPagina.Length;
-                            context.Response.OutputStream.Write(bufferPagina, 0, bufferPagina.Length);
+                            VMMsg.ListaDatos.First().Promedio += 10;
+                            VMMsg.ListaDatos.First().Tamaño += 10;
+                            VMMsg.UpdateGraficas();
+                            //string Pagina = File.ReadAllText("Assets/Index.html");
+                            //var bufferPagina = Encoding.UTF8.GetBytes(Pagina);
+                            //context.Response.ContentLength64 = bufferPagina.Length;
+                            //context.Response.OutputStream.Write(bufferPagina, 0, bufferPagina.Length);
                             context.Response.StatusCode = 200;
                             context.Response.Close();
                         }
