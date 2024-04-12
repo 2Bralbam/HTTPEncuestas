@@ -6,30 +6,135 @@
              xmlns:local="clr-namespace:HTTPEncuestas.Views.Controls"
              xmlns:vm="clr-namespace:HTTPEncuestas.Models.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <UserControl.DataContext>
         <vm:ConfigViewModel></vm:ConfigViewModel>
     </UserControl.DataContext>
-    <Grid>
-        <Button Width="180" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom" Margin="20" Command="{Binding VerAnterioresEncuestasCommand}">Ver Encuestas Anteriores</Button>
-        <Label HorizontalAlignment="Center" FontSize="32">Encuestas Labsystec</Label>
-        <StackPanel VerticalAlignment="Center">
-            <Label HorizontalAlignment="Center">Introduce el tema de la encuesta</Label>
-            <TextBox Width="220" Text="{Binding TituloEncuesta}"></TextBox>
-            <Label HorizontalAlignment="Center">Agrega tus preguntas de la encuesta</Label>
-            <TextBox Width="220" x:Name="preg" Text="{Binding Pregunta}"></TextBox>
-            <Button Width="120" Margin="10" Command="{Binding AgregarPreguntaCommand}" Click="Button_Click">Agregar pregunta</Button>
-           
-            <ListBox HorizontalAlignment="Center" Width="400" Height="60" ItemsSource="{Binding Preguntas}" SelectedItem="{Binding SelectedPregunta}">
+    <StackPanel>
+        
+        <Border Background="#67ab49">
+            <Label HorizontalAlignment="Center" FontSize="30" FontFamily="Arial" FontWeight="Bold" Foreground="White" Margin="10">Encuestas Labsystec</Label>
+        </Border>
+
+        <Label HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Margin="0, 10">Introduce el tema de la encuesta</Label>
+        <TextBox Margin="10" Width="420" Text="{Binding TituloEncuesta}" FontSize="18" Padding="5"></TextBox>
+        <Label HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold">Agrega tus preguntas de la encuesta</Label>
+        <TextBox Margin="10" Width="420" FontSize="18" Padding="5" x:Name="preg" Text="{Binding Pregunta}"></TextBox>
+        <Button Width="140" Margin="10" Command="{Binding AgregarPreguntaCommand}" Click="Button_Click" >Agregar pregunta
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#67ab49"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#14892c"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <ListBox HorizontalAlignment="Center" Width="500" Height="80" ItemsSource="{Binding Preguntas}" SelectedItem="{Binding SelectedPregunta}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding}"></Label>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 
-            </ListBox>
-            <Button Width="120" Margin="10" Command="{Binding QuitarPreguntaCommand}">Quitar Pregunta</Button>
-            <Button Width="120" Margin="10" Command="{Binding IniciarEncuestaCommand}">Iniciar Encuesta</Button>
-        </StackPanel>        
-    </Grid>
+        </ListBox>
+        <WrapPanel HorizontalAlignment="Center" Margin="10">
+            <Button Width="140" Margin="10" Command="{Binding QuitarPreguntaCommand}">Quitar Pregunta
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#f72b5e"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#b71f45"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Width="140" Margin="10" Command="{Binding IniciarEncuestaCommand}">Iniciar Encuesta
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#67ab49"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#14892c"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </WrapPanel>
+         
+        <Button Width="190" HorizontalAlignment="Right" Height="40"  Margin="20" Command="{Binding VerAnterioresEncuestasCommand}">Ver Encuestas Anteriores
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#67ab49"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#14892c"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </StackPanel>
 </UserControl>

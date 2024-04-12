@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:HTTPEncuestas.Views.Controls"
         xmlns:vm="clr-namespace:HTTPEncuestas.Models.ViewModels"
         mc:Ignorable="d"
-        Title="HomeConfig" Height="450" Width="800">
+        Title="" Height="600" Width="800">
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
