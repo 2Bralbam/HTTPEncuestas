@@ -149,7 +149,7 @@ namespace HTTPEncuestas.Services
                                 }
                                 UltimaRespuesta u = new()
                                 {
-                                    NombreUser = Name ?? "Anónimo",
+                                    NombreUser = Name.Replace("+"," ") ?? "Anónimo",
                                     Promedio = (PromedioR / a.Length).ToString("F2")
                                 };
                                 Application.Current.Dispatcher.Invoke(() =>
