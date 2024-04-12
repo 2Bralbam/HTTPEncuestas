@@ -15,5 +15,21 @@
         <input type="text">
         <input class="enviar" type="submit">
     </div>
+    <script>
+        
+        const btn = document.querySelector('.enviar').addEventListener('click', () => {
+            let un = localStorage.getItem('userName');
+            if (un == document.querySelector('input[type=text]').value) {
+                alert('Hola ' + un + ' ya has presentado la encuesta');
+                return;
+            }
+            else{
+                const userName = document.querySelector('input').value;
+                localStorage.setItem('userName', userName);
+                window.location.href = '/encuesta';
+            }
+            
+        });
+    </script>
 </body>
 </html>

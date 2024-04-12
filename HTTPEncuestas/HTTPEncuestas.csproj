@@ -15,14 +15,12 @@
     <None Remove="Assets\vistasencuesta\halcon.png" />
     <None Remove="Assets\vistasencuesta\itesrc.png" />
     <None Remove="Assets\vistasencuesta\nombre.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EncuestasDB\" />
+    <None Remove="EncuestasDB\db.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +30,7 @@
     <Resource Include="Assets\vistasencuesta\halcon.png" />
     <Resource Include="Assets\vistasencuesta\itesrc.png" />
     <Resource Include="Assets\vistasencuesta\nombre.html" />
+    <Resource Include="EncuestasDB\db.txt" />
   </ItemGroup>
 
 </Project>

@@ -51,10 +51,22 @@
 
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel>
+            <StackPanel Orientation="Vertical" CanVerticallyScroll="True">
                 <Label FontSize="24" HorizontalAlignment="Center">Ultimas Respuestas</Label>
-                <ListBox>
-
+                
+                <ListBox ItemsSource="{Binding UltimasRespuestas}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="{Binding NombreUser}"></Label>
+                                <Label Grid.Column="1" Content="{Binding Promedio}"></Label>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
 
             </StackPanel>

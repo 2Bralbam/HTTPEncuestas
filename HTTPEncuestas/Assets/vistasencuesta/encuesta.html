@@ -13,6 +13,7 @@
     <div class="wrap">
         <h1 class="titulo" >{{TituloEncuesta}}</h1>
         <form method="post" action="/respuesta">
+          <input type="hidden" name="userName" value="Anonimo">
           <div>
             {{Preguntas}}
             </div>
@@ -23,5 +24,11 @@
           </div>
         </form>
       </div>
+      <script>
+        const userName = localStorage.getItem('userName');
+        if (userName) {
+          document.querySelector('input[name="userName"]').value = userName;
+        }
+      </script>
 </body>
 </html>

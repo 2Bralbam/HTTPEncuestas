@@ -10,7 +10,13 @@ namespace HTTPEncuestas.Models
     public static class VMMsg
     {
         public static List<GraficaModel> ListaDatos { get; set; } = new();
+        public static string TituloEncuesta { get; set; } = null!;
         public static event EventHandler<string>? CambioDeVista;
+        public static event Action? UpdateHistorialView;
+        public static void OnUpdateHistorialView()
+        {
+            UpdateHistorialView?.Invoke();
+        }
         public static void OnCambioDeVista(string vista)
         {
             CambioDeVista?.Invoke(null, vista);

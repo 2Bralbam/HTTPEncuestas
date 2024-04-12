@@ -1,12 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using HTTPEncuestas.Models.Entities;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HTTPEncuestas.Models.ViewModels
@@ -34,8 +32,7 @@ namespace HTTPEncuestas.Models.ViewModels
 
         private void UpdateUltimaRespuesta(object? sender, UltimaRespuesta e)
         {
-
-            UltimasRespuestas.Add(e);
+            UltimasRespuestas.Insert(0, e);
             OnPropertyChanged(nameof(UltimasRespuestas));
         }
 
@@ -50,8 +47,52 @@ namespace HTTPEncuestas.Models.ViewModels
         }
         private void DetenerEncuesta()
         {
+            string pathdb = "EncuestasDB/db.txt";
+            Directory.CreateDirectory(Path.GetDirectoryName(pathdb));
+            string json = File.ReadAllText(pathdb);
+            DB? DB = JsonConvert.DeserializeObject<DB>(json);
+            dbModel datos = new();
+            
+                datos = new dbModel();
+                datos.TituloEncuesta = VMMsg.TituloEncuesta;
+                datos.UltimasRespuestas = new();
+                datos.UltimasRespuestas.AddRange(UltimasRespuestas);
+                datos.ListaBarras = new();
+                datos.ListaBarras.AddRange(ListaBarras);
+            if(DB!=null)
+            {
+                DB.Encuestas.Add(datos);
+            }
+            else
+            {
+                DB = new DB();
+                DB.Encuestas.Add(datos);
+            }
+            string path = "EncuestasDB/db.txt";
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllText(path, JsonConvert.SerializeObject(DB));
             VMMsg.OnSetServerStatus(false);
+            UltimasRespuestas.Clear();
+            OnPropertyChanged(nameof(UltimasRespuestas));
             VMMsg.OnCambioDeVista("ConfigView");
+        }
+        public class dbModel
+        {
+            public string TituloEncuesta { get; set; } = null!;
+            public List<UltimaRespuesta>? UltimasRespuestas { get; set; } = new();
+            public List<GraficaModel>? ListaBarras { get; set; } = new();
+            public float Promedio
+            {
+                get
+                {
+                    return ListaBarras?.Average(x => x.prom) ?? 0;
+                }
+            }
+            public DateTime Fecha { get; set; } = DateTime.Now;
+        }
+        public class DB
+        {
+            public List<dbModel> Encuestas { get; set; } = new();
         }
     }
 }

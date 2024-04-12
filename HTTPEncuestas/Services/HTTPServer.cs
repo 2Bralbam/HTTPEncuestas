@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace HTTPEncuestas.Services
 {
@@ -97,40 +98,70 @@ namespace HTTPEncuestas.Services
                             using (var reader = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding))
                             {
                                 string contenido = reader.ReadToEnd();
+
                                 var a = contenido.Split('&');
+                                var userNameEntry = a[0];
+
+                                var Name = userNameEntry.Split('=')[1];
+                                a = a.Skip(1).ToArray();
                                 //VMMsg.ListaDatos.First().Promedio += 10;
                                 //VMMsg.ListaDatos.First().Tamaño += 10;
                                 //VMMsg.UpdateGraficas();
                                 int r = 0;
                                 foreach (var p in VMMsg.ListaDatos)
                                 {
-                                    p.Cantidad++;
-                                    int Calif = int.Parse(a[r].Split('=')[1]);
-                                    //p.Calificaciones.Append(int.Parse(a[0].Split('=')[1]));
-                                    if (p.Calificaciones == null)
+                                    try
                                     {
-                                        p.Calificaciones = new float[1];
-                                        p.Calificaciones[0] = Calif;
-                                    }
-                                    else
-                                    {
-                                        float[] temp = new float[p.Calificaciones.Length + 1];
-                                        for (int i = 0; i < p.Calificaciones.Length; i++)
+                                        p.Cantidad++;
+                                        int Calif = int.Parse(a[r].Split('=')[1]);
+                                        //p.Calificaciones.Append(int.Parse(a[0].Split('=')[1]));
+                                        if (p.Calificaciones == null)
                                         {
-                                            temp[i] = p.Calificaciones[i];
+                                            p.Calificaciones = new float[1];
+                                            p.Calificaciones[0] = Calif;
                                         }
-                                        temp[p.Calificaciones.Length] = Calif;
-                                        p.Calificaciones = temp;
+                                        else
+                                        {
+                                            float[] temp = new float[p.Calificaciones.Length + 1];
+                                            for (int i = 0; i < p.Calificaciones.Length; i++)
+                                            {
+                                                temp[i] = p.Calificaciones[i];
+                                            }
+                                            temp[p.Calificaciones.Length] = Calif;
+                                            p.Calificaciones = temp;
+                                        }
+                                        
+                                        Application.Current.Dispatcher.Invoke(() =>
+                                        {
+                                            VMMsg.UpdateGraficas();
+                                        });
+                                        r++;
                                     }
-                                    UltimaRespuesta u = new()
+                                    catch
                                     {
-                                        NombreUser = "Anonimo",
-                                        Promedio = p.prom.ToString("F2")
-                                    };
-                                    VMMsg.UpdateGraficas();
-                                    r++;
+
+                                    }
                                 }
+                                double PromedioR = 0;
+                                foreach (var c in a)
+                                {
+                                    PromedioR += double.Parse(c.Split('=')[1]);
+                                }
+                                UltimaRespuesta u = new()
+                                {
+                                    NombreUser = Name ?? "Anónimo",
+                                    Promedio = (PromedioR / a.Length).ToString("F2")
+                                };
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    VMMsg.OnUpdateHistorial(u);
+                                });
                             }
+                            var resourceUri = new Uri("/Assets/vistasencuesta/agradecimiento.html", UriKind.Relative);
+                            string Pagina = new StreamReader(Application.GetResourceStream(resourceUri).Stream).ReadToEnd();
+                            var bufferPagina = Encoding.UTF8.GetBytes(Pagina);
+                            context.Response.ContentLength64 = bufferPagina.Length;
+                            context.Response.OutputStream.Write(bufferPagina, 0, bufferPagina.Length);
                             context.Response.StatusCode = 200;
                             context.Response.OutputStream.Close();
                         }
@@ -185,7 +216,7 @@ namespace HTTPEncuestas.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error en el servidor");
+
             }
         }
 

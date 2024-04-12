@@ -39,7 +39,7 @@ namespace HTTPEncuestas.Models.ViewModels
                 if(SelectedPregunta!=null)
                 Preguntas.Remove(SelectedPregunta);
             });
-            VerAnterioresEncuestasCommand = new RelayCommand(() => { VMMsg.OnCambioDeVista("EncuestasView"); });
+            VerAnterioresEncuestasCommand = new RelayCommand(() => { VMMsg.OnCambioDeVista("EncuestasView"); VMMsg.OnUpdateHistorialView(); });
             Preguntas = new ObservableCollection<string>();
         }
 
@@ -80,6 +80,7 @@ namespace HTTPEncuestas.Models.ViewModels
                     return;
                 }
                 _server.TituloEncuesta = TituloEncuesta;
+                VMMsg.TituloEncuesta = TituloEncuesta;
                 VMMsg.OnCambioDeVista("VerEncuestaLiveView");
                 _server.StartServer();
             }

@@ -4,18 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HTTPEncuestas.Views.Controls"
+             xmlns:vm="clr-namespace:HTTPEncuestas.Models.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:EncuestasAnterioresViewModel></vm:EncuestasAnterioresViewModel>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="130"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Width="120" Height="40" HorizontalAlignment="Center">
+        <Button Grid.Column="0" Width="120" Height="40" HorizontalAlignment="Center" Command="{Binding BackCommand}">
             Regresar
         </Button>
-        <ListBox Grid.Column="1">
-            
+        <ListBox Grid.Column="1" ItemsSource="{Binding BaseDeDatos.Encuestas}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding TituloEncuesta}" FontWeight="Bold"></Label>
+                        <Label>Promedio General:</Label>
+                        <Label Content="{Binding Promedio}"></Label>
+                        <Label>Fecha</Label>
+                        <Label Content="{Binding Fecha}" FontWeight="Bold"></Label>
+                    </StackPanel>
+                        
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </UserControl>
