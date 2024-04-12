@@ -63,9 +63,7 @@ namespace HTTPEncuestas.Models.ViewModels
             {
                 GraficaModel m = new() 
                 {
-                    Pregunta = P,
-                    Promedio = 50,
-                    Tamaño = 100
+                    Pregunta = P
                 };
                 PreguntasParaGrafica.Add(m);
             });

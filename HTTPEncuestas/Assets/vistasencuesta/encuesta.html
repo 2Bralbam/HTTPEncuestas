@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="encuesta2.css">
+</head>
+<body>
+    <header>
+        <img src="HALCON.png">
+        <img src="itesrc.png">
+    </header>
+    <div class="wrap">
+        <h1 class="titulo" >{{TituloEncuesta}}</h1>
+        <form method="post" action="/respuesta">
+          <div>
+            {{Preguntas}}
+            </div>
+          
+          <div class="buttons">
+            <button class="limpiar">Limpiar</button>
+            <input type="submit" class="enviar" value="Enviar"/>
+          </div>
+        </form>
+      </div>
+</body>
+</html>

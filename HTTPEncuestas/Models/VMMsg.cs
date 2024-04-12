@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTTPEncuestas.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,11 +30,33 @@ namespace HTTPEncuestas.Models
             UpdateGraficaView?.Invoke();
             ListaDatos = Lista;
         }
+        public static event EventHandler<UltimaRespuesta>? UpdateHistorial;
+        public static void OnUpdateHistorial(UltimaRespuesta r)
+        {
+            UpdateHistorial?.Invoke(null, r);
+        }
     }
     public class GraficaModel
     {
-        public int Tamaño { get; set; }
+        public int Tamaño { get {
+                return (int)(40 * prom);
+            }
+
+        }
         public string Pregunta { get; set; } = null!;
-        public float Promedio { get; set; }
+        public string Promedio { get
+            {
+                return prom.ToString("F2");
+            }
+        }
+        public float prom {
+            get
+            {
+                return Calificaciones?.Average() ?? 0;
+            }
+
+        }
+        public float[]? Calificaciones { get; set; }
+        public int Cantidad { get; set; }
     }
 }

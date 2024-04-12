@@ -1,0 +1,160 @@
+html,body 
+{
+    padding:0;
+    margin:0;
+}
+.wrap, .container {
+  font:10px Arial, san-serif;
+}
+
+header{
+    background-color: #14892c;
+    height: 60PX;
+    display: flex;
+    justify-content: space-between;
+}
+
+header img{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+h1.titulo {
+  padding-left:50px;
+  padding-top: 20px;
+  margin:10px 0 0;
+}
+
+form .pregunta{
+  display:block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 30px 0 0 4.25%;
+  margin-bottom:40px;
+}
+
+form .respuesta {
+  font-size: 16px;
+  list-style:none;
+  width:100%;
+  margin:0px;
+  padding:0 0 50px;
+  display:block;
+  border-bottom:2px solid #efefef;
+}
+
+form .respuesta:last-of-type 
+{
+    border-bottom:0;
+}
+
+form .respuesta:before {
+  content: '';
+  position:relative;
+  top:20px;
+  left:9.0%;
+  display:block;
+  background-color:#efefef;
+  height:4px;
+  width:78%;
+}
+
+form .respuesta li {
+  display:inline-block;
+  width:19%;
+  text-align:center;
+  vertical-align: top;
+}
+
+form .respuesta li input[type=radio] {
+  height: 30px;
+  width: 30px;
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+}
+
+form .respuesta li label{
+    width:100%;
+    margin-left: 15px;
+}
+
+form .buttons {
+  margin:10px 0px 40px 0px;
+  padding:0 4.25%;
+  text-align:center;
+}
+
+form .buttons button, .buttons input[type="submit"],
+.container .enviar{
+  background-color: #67ab49;
+  border-radius: 5px;
+  border: none;
+  margin: 5px;
+}
+
+form .buttons .limpiar {
+    padding: 10px 50px;
+    background-color: #dcdcdc;
+}
+form .buttons .enviar, .container .enviar {
+    padding: 10px 50px;
+    background-color: #67ab49;
+    color: white;
+} 
+
+form .buttons .limpiar:hover {
+    background-color: #9d9b9b;
+    cursor: pointer;
+}
+
+form .buttons .enviar:hover, .container .enviar:hover {
+    background-color: #14892c;
+    cursor: pointer;
+} 
+
+.container input{
+  margin: 30px;
+}
+
+.container input[type="text"]{
+  font-size: 20px;
+  width: 80%;
+  max-width: 800px; 
+  padding: 10px;
+  text-align: center;
+}
+
+.container .titulo{
+  font-size: 28px;
+  color: #0e5e1e;
+}
+
+.container h2{
+  color: #0e5e1e;
+}
+
+.container .enviar{
+  font-size: 20px;
+}
+
+.container {
+  margin: 40PX;
+  text-align: center; 
+  border: 1px solid #ccc; 
+  background-color: #e0eee2;
+  margin-top: 80px;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 50vh;
+}
+
+
+

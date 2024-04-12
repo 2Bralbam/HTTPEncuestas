@@ -9,11 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\vistasencuesta\agradecimiento.html" />
+    <None Remove="Assets\vistasencuesta\encuesta.html" />
+    <None Remove="Assets\vistasencuesta\encuesta2.css" />
+    <None Remove="Assets\vistasencuesta\halcon.png" />
+    <None Remove="Assets\vistasencuesta\itesrc.png" />
+    <None Remove="Assets\vistasencuesta\nombre.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="EncuestasDB\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\vistasencuesta\agradecimiento.html" />
+    <Resource Include="Assets\vistasencuesta\encuesta.html" />
+    <Resource Include="Assets\vistasencuesta\encuesta2.css" />
+    <Resource Include="Assets\vistasencuesta\halcon.png" />
+    <Resource Include="Assets\vistasencuesta\itesrc.png" />
+    <Resource Include="Assets\vistasencuesta\nombre.html" />
   </ItemGroup>
 
 </Project>
