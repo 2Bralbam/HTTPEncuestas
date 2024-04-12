@@ -10,91 +10,86 @@
     <UserControl.DataContext>
         <vm:VerEncuestaLiveVIewModel></vm:VerEncuestaLiveVIewModel>
     </UserControl.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Margin="10">
-            <StackPanel Background="White">
-                <Label FontSize="24" HorizontalAlignment="Center" FontWeight="Bold">Resultados generales</Label>
-                <Grid Height="300" Width="Auto">
-                    <ListBox ItemsSource="{Binding ListaBarras}">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"></StackPanel>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel VerticalAlignment="Bottom">
-                                    <Label HorizontalAlignment="Center" Content="{Binding Promedio}"></Label>
-                                    <Border Height="{Binding Tamaño}" VerticalAlignment="Bottom" Margin="5 10" Width="40" Background="red">
+    <StackPanel>
+        <StackPanel Background="White">
+            <Border Background="#67ab49">
+                <Label FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White">Resultados generales</Label>
+            </Border>
 
-                                    </Border>
-                                    <Label Content="{Binding Pregunta}"></Label>
-                                </StackPanel>
-
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-
-                    <Border Height="1" Width="350" Background="black" VerticalAlignment="Bottom">
-
-                    </Border>
-
-                </Grid>
-                <Button Command="{Binding DetenerEncuestaCommand}" Margin="10" MaxWidth="140">Detener encuesta
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#f72b5e"/>
-                            <Setter Property="Foreground" Value="White"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#b71f45"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
-
-
-        </Grid>
-        <Grid Grid.Column="1">
-            <StackPanel Orientation="Vertical" CanVerticallyScroll="True">
-                <Label FontSize="24" HorizontalAlignment="Center" FontWeight="Bold">Ultimas Respuestas</Label>
-                
-                <ListBox ItemsSource="{Binding UltimasRespuestas}">
+            <Grid Height="300" Width="Auto">
+                <ListBox ItemsSource="{Binding ListaBarras}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Content="{Binding NombreUser}"></Label>
-                                <Label Grid.Column="1" Content="{Binding Promedio}"></Label>
-                            </Grid>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <Label HorizontalAlignment="Center" Content="{Binding Promedio}"></Label>
+                                <Grid Height="200">
+                                    <Border Height="{Binding Tamaño}" VerticalAlignment="Bottom" Margin="5 10" Width="40" Background="#67ab49">
+                                    </Border>
+                                </Grid>
+                                <Label Content="{Binding Pregunta}"></Label>
+                            </StackPanel>
+
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-            </StackPanel>
-        </Grid>
-    </Grid>
+
+            </Grid>
+           
+        </StackPanel>
+        <StackPanel Orientation="Vertical" CanVerticallyScroll="True">
+            <Border Background="#67ab49">
+                <Label FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White">Ultimas Respuestas</Label>
+            </Border>
+
+
+            <ListBox ItemsSource="{Binding UltimasRespuestas}" Height="120">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="{Binding NombreUser}" FontSize="14"></Label>
+                            <Label Grid.Column="1" Content="{Binding Promedio}" FontSize="14" ></Label>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+        <Button Command="{Binding DetenerEncuestaCommand}" Margin="10" MaxWidth="140">Detener encuesta
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#f72b5e"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#b71f45"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </StackPanel>
+  
 </UserControl>

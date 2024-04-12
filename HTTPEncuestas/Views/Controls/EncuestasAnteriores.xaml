@@ -11,6 +11,57 @@
         <vm:EncuestasAnterioresViewModel></vm:EncuestasAnterioresViewModel>
     </UserControl.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="450"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Background="#67ab49" Grid.Row="0">
+            <Label FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White">Encuestas anteriores</Label>
+        </Border>
+        <ListBox Grid.Row="1" ItemsSource="{Binding BaseDeDatos.Encuestas}" BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding TituloEncuesta}" FontWeight="Bold" FontSize="16"></Label>
+                        <Label FontSize="16">Promedio General:</Label>
+                        <Label FontSize="16" Content="{Binding Promedio}"></Label>
+                        <Label FontSize="16">Fecha</Label>
+                        <Label FontSize="16" Content="{Binding Fecha}" FontWeight="Bold"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="2" Width="120" Height="40" Margin="10"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding BackCommand}">
+            Regresar
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#67ab49"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="5" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#14892c"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="130"/>
             <ColumnDefinition Width="*"/>
@@ -42,7 +93,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <ListBox Grid.Column="1" ItemsSource="{Binding BaseDeDatos.Encuestas}">
+        <ListBox Grid.Column="1" ItemsSource="{Binding BaseDeDatos.Encuestas}" BorderBrush="#67ab49" BorderThickness="5">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -57,5 +108,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+    </Grid>-->
 </UserControl>
