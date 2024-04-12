@@ -49,7 +49,12 @@ namespace HTTPEncuestas.Models.ViewModels
         {
             string pathdb = "EncuestasDB/db.txt";
             Directory.CreateDirectory(Path.GetDirectoryName(pathdb));
+            if (!File.Exists(pathdb))
+            {
+                File.WriteAllText(pathdb, "");
+            }
             string json = File.ReadAllText(pathdb);
+
             DB? DB = JsonConvert.DeserializeObject<DB>(json);
             dbModel datos = new();
             
@@ -68,9 +73,8 @@ namespace HTTPEncuestas.Models.ViewModels
                 DB = new DB();
                 DB.Encuestas.Add(datos);
             }
-            string path = "EncuestasDB/db.txt";
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            File.WriteAllText(path, JsonConvert.SerializeObject(DB));
+            Directory.CreateDirectory(Path.GetDirectoryName(pathdb));
+            File.WriteAllText(pathdb, JsonConvert.SerializeObject(DB));
             VMMsg.OnSetServerStatus(false);
             UltimasRespuestas.Clear();
             OnPropertyChanged(nameof(UltimasRespuestas));

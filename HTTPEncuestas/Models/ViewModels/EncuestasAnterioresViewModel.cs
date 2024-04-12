@@ -17,15 +17,18 @@ namespace HTTPEncuestas.Models.ViewModels
     public class EncuestasAnterioresViewModel : INotifyPropertyChanged
     {
         public ICommand BackCommand { get; set; }
-        public DB? BaseDeDatos { 
-            get{
+        public DB? BaseDeDatos
+        {
+            get
+            {
                 string pathdb = "EncuestasDB/db.txt";
-                Directory.CreateDirectory(Path.GetDirectoryName(pathdb));
+                // No necesitas crear el directorio aquí
+                // Directory.CreateDirectory(Path.GetDirectoryName(pathdb));
+                // Usa la ruta del archivo completo, no solo el directorio
                 string json = File.ReadAllText(pathdb);
                 DB? DB = JsonConvert.DeserializeObject<DB>(json);
                 return DB;
             }
-
         }
         public EncuestasAnterioresViewModel()
         {

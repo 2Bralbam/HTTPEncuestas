@@ -15,7 +15,6 @@
     <None Remove="Assets\vistasencuesta\halcon.png" />
     <None Remove="Assets\vistasencuesta\itesrc.png" />
     <None Remove="Assets\vistasencuesta\nombre.html" />
-    <None Remove="EncuestasDB\db.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +29,6 @@
     <Resource Include="Assets\vistasencuesta\halcon.png" />
     <Resource Include="Assets\vistasencuesta\itesrc.png" />
     <Resource Include="Assets\vistasencuesta\nombre.html" />
-    <Resource Include="EncuestasDB\db.txt" />
   </ItemGroup>
 
 </Project>
