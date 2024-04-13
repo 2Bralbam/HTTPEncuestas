@@ -95,6 +95,7 @@ namespace HTTPEncuestas.Services
                         }
                         else if (context.Request.Url.LocalPath == "/respuesta" && context.Request.HttpMethod == "POST")
                         {
+                            VMMsg.CantidadEncuestados++;
                             using (var reader = new StreamReader(context.Request.InputStream, context.Request.ContentEncoding))
                             {
                                 string contenido = reader.ReadToEnd();

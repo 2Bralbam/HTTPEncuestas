@@ -13,6 +13,7 @@ namespace HTTPEncuestas.Models
         public static string TituloEncuesta { get; set; } = null!;
         public static event EventHandler<string>? CambioDeVista;
         public static event Action? UpdateHistorialView;
+        public static int CantidadEncuestados { get; set; } = 0;
         public static void OnUpdateHistorialView()
         {
             UpdateHistorialView?.Invoke();
@@ -29,6 +30,7 @@ namespace HTTPEncuestas.Models
         public static event Action? UpdateGraficaView;
         public static void UpdateGraficas()
         {
+            
             UpdateGraficaView?.Invoke();
         }
         public static void OnUpdateGraficasLive(List<GraficaModel> Lista)

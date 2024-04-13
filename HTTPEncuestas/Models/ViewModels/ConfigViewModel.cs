@@ -50,6 +50,11 @@ namespace HTTPEncuestas.Models.ViewModels
                 MessageBox.Show("Por favor, coloca una pregunta", "Alerta");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(Pregunta))
+            {
+                MessageBox.Show("Por favor, coloca una pregunta", "Alerta");
+                return;
+            }
             Preguntas.Add(Pregunta);
             Pregunta = "";
         }

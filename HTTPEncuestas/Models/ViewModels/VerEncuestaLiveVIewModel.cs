@@ -14,6 +14,10 @@ namespace HTTPEncuestas.Models.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand DetenerEncuestaCommand { get; set; }
         private ObservableCollection<GraficaModel>? listbarras { get; set; } = new();
+        public int CantidadEncuestados { get {
+                return VMMsg.CantidadEncuestados;
+            }
+        }
         public ObservableCollection<GraficaModel> ListaBarras
         {
             get
@@ -34,11 +38,13 @@ namespace HTTPEncuestas.Models.ViewModels
         {
             UltimasRespuestas.Insert(0, e);
             OnPropertyChanged(nameof(UltimasRespuestas));
+            OnPropertyChanged(nameof(CantidadEncuestados));
         }
 
         private void UpdateBarras()
         {
             OnPropertyChanged(nameof(ListaBarras));
+            OnPropertyChanged(nameof(CantidadEncuestados));
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -64,6 +70,7 @@ namespace HTTPEncuestas.Models.ViewModels
                 datos.UltimasRespuestas.AddRange(UltimasRespuestas);
                 datos.ListaBarras = new();
                 datos.ListaBarras.AddRange(ListaBarras);
+                datos.CantidadEncuestados = VMMsg.CantidadEncuestados;
             if(DB!=null)
             {
                 DB.Encuestas.Add(datos);
@@ -79,9 +86,11 @@ namespace HTTPEncuestas.Models.ViewModels
             UltimasRespuestas.Clear();
             OnPropertyChanged(nameof(UltimasRespuestas));
             VMMsg.OnCambioDeVista("ConfigView");
+            VMMsg.CantidadEncuestados = 0;
         }
         public class dbModel
         {
+            public int CantidadEncuestados { get; set; } = 0;
             public string TituloEncuesta { get; set; } = null!;
             public List<UltimaRespuesta>? UltimasRespuestas { get; set; } = new();
             public List<GraficaModel>? ListaBarras { get; set; } = new();

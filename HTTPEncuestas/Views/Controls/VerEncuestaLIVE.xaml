@@ -37,8 +37,14 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Total encuestados: </Label>
+                        <Label Content="{Binding CantidadEncuestados}"></Label>
 
-
+                    </StackPanel>
+                </Grid>
+                
             </Grid>
            
         </StackPanel>

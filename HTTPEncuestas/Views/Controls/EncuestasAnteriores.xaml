@@ -23,11 +23,13 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding TituloEncuesta}" FontWeight="Bold" FontSize="16"></Label>
-                        <Label FontSize="16">Promedio General:</Label>
+                        <Label Content="{Binding TituloEncuesta}" FontWeight="Bold" FontSize="18" Foreground="Green"></Label>
+                        <Label FontSize="16" FontWeight="Bold">Promedio General:</Label>
                         <Label FontSize="16" Content="{Binding Promedio}"></Label>
-                        <Label FontSize="16">Fecha</Label>
-                        <Label FontSize="16" Content="{Binding Fecha}" FontWeight="Bold"></Label>
+                        <Label FontSize="16" FontWeight="Bold">Fecha</Label>
+                        <Label FontSize="16" Content="{Binding Fecha}" ></Label>
+                        <Label FontSize="16" FontWeight="Bold">Encuestados: </Label>
+                        <Label FontSize="16" Content="{Binding CantidadEncuestados}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
